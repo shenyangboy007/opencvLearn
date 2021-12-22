@@ -17,6 +17,10 @@ int main()
 	
 	qd.pixel_Visit_Value_Dome(src);
 
+	src = imread("D:/images/1_1.jpg");
+
+	qd.operate_Demo(src);
+
 	waitKey(0);//程序阻塞，参数表示延时时间。单位ms
 	destroyAllWindows();//销毁窗口
 	return 0;

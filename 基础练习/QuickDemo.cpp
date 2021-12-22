@@ -51,18 +51,18 @@ void QuickDemo::mat_Creation_Demo(Mat& image) {
 
 void QuickDemo::pixel_Visit_Value_Dome(Mat& image) {
 
-	int dims = image.channels();
-	int h = image.rows;
-	int w = image.cols;
+	int dims = image.channels(); //图像通道数
+	int h = image.rows;  //图像行数
+	int w = image.cols;  //图像列数
 
 	for (int row = 0; row < h; row++) {
 		for (int col = 0; col < w; col++) {
-			if (dims == 1) {
+			if (dims == 1) {  //单通道的灰度图像
 				int pv = image.at<uchar>(row, col);
 				image.at<uchar>(row, col) = 255 - pv;
 			}
-			if (dims == 3) {
-				Vec3b bgr = image.at<Vec3b>(row, col);
+			if (dims == 3) {//三通道的彩色图像
+				Vec3b bgr = image.at<Vec3b>(row, col); //opencv特定的类型，获取三个颜色，三个值对应三通道
 				image.at<Vec3b>(row, col)[0] = 255 - bgr[0];
 				image.at<Vec3b>(row, col)[1] = 255 - bgr[1];
 				image.at<Vec3b>(row, col)[2] = 255 - bgr[2];
@@ -75,13 +75,13 @@ void QuickDemo::pixel_Visit_Value_Dome(Mat& image) {
 
 void QuickDemo::pixel_Visit_Point_Dome(Mat& image) {
 
-	int dims = image.channels();
+	int dims = image.channels();//图像通道数
 	int h = image.rows;
 	int w = image.cols;
 
 	for (int row = 0; row < h; row++) {
 		
-		uchar* current_row = image.ptr<uchar>(row);
+		uchar* current_row = image.ptr<uchar>(row); //获取每行第一个像素指针
 
 		for (int col = 0; col < w; col++) {
 			if (dims == 1) {
@@ -89,7 +89,7 @@ void QuickDemo::pixel_Visit_Point_Dome(Mat& image) {
 				*current_row++ = 255 - pv;
 			}
 			if (dims == 3) {
-				*current_row++ = 255 - *current_row;
+				*current_row++ = 255 - *current_row; //指针每做一次运算，就向后移动一位
 				*current_row++ = 255 - *current_row;
 				*current_row++ = 255 - *current_row;
 			}
@@ -97,4 +97,47 @@ void QuickDemo::pixel_Visit_Point_Dome(Mat& image) {
 	}
 	namedWindow("像素指针读写演示", WINDOW_FREERATIO);
 	imshow("像素指针读写演示", image);
+}
+
+void QuickDemo::operate_Demo(Mat& image) {
+
+	Mat dst = Mat::zeros(image.size(), image.type());
+	Mat m = Mat::zeros(image.size(), image.type());
+
+	dst = image - Scalar(50, 50, 50);
+	imshow("减50", dst);
+
+	m = Scalar(100, 100, 100);
+	add(image, m, dst); //加法函数
+	imshow("加法操作", dst);
+
+	m = Scalar(100, 100, 100);
+	subtract(image, m, dst); //减法函数
+	imshow("减法操作", dst);
+
+	m = Scalar(3, 3, 3);
+	multiply(image, m, dst); //乘法函数
+	imshow("乘法操作", dst);
+
+	m = Scalar(2, 2, 2);
+	divide(image, m, dst); //除法函数
+	imshow("除法法操作", dst);
+
+	int dims = image.channels();
+	int h = image.rows;
+	int w = image.cols;
+
+	m = Scalar(200, 200, 200);
+	for (int row = 0; row < h; row++) {
+		for (int col = 0; col < w; col++) {
+			Vec3b p1 = image.at<Vec3b>(row, col);
+			Vec3b p2 = m.at<Vec3b>(row, col);
+			//saturate_cast函数限制取值范围0~255
+			dst.at<Vec3b>(row, col)[0] = saturate_cast<uchar>(p1[0] + p2[0]); 
+			dst.at<Vec3b>(row, col)[1] = saturate_cast<uchar>(p1[1] + p2[1]);
+			dst.at<Vec3b>(row, col)[2] = saturate_cast<uchar>(p1[2] + p2[2]);
+		}
+	}
+	imshow("底层实现加法", dst);
+
 }
