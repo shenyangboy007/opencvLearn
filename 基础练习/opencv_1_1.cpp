@@ -13,6 +13,10 @@ int main()
 
 	qd.mat_Creation_Demo(src);//调用方法
 
+	qd.pixel_Visit_Point_Dome(src);
+	
+	qd.pixel_Visit_Value_Dome(src);
+
 	waitKey(0);//程序阻塞，参数表示延时时间。单位ms
 	destroyAllWindows();//销毁窗口
 	return 0;
