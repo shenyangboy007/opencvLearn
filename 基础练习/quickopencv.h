@@ -10,4 +10,5 @@ class QuickDemo
 		void pixel_Visit_Value_Dome(Mat& image);
 		void pixel_Visit_Point_Dome(Mat& image);
 		void operate_Demo(Mat& image);
+		void tracking_Bar_Dome(Mat& image);
 };

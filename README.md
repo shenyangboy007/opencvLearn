@@ -16,6 +16,8 @@ QuickDemo.pixel_Visit_Value_Dome方法：使用取指针的方法对图像的点
 
 QuickDemo.operate_Demo方法：图像的加减乘除方法(add(),multiply(),subtract(),divide())
 
+QuickDemo.tracking_Bar_Dome方法：通过滑块条调节图像的对比度(addWeighted(),createTrackbar())
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 opencv小练习

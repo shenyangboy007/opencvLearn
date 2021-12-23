@@ -21,6 +21,10 @@ int main()
 
 	qd.operate_Demo(src);
 
+	src = imread("D:/images/1_1.jpg");
+
+	qd.tracking_Bar_Dome(src);
+
 	waitKey(0);//程序阻塞，参数表示延时时间。单位ms
 	destroyAllWindows();//销毁窗口
 	return 0;
