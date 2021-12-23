@@ -18,6 +18,8 @@ QuickDemo.operate_Demo方法：图像的加减乘除方法(add(),multiply(),subt
 
 QuickDemo.tracking_Bar_Dome方法：通过滑块条调节图像的对比度(addWeighted(),createTrackbar())
 
+QuickDemo.key_Demo方法：读取键盘输入项，根据不同的输入改变图像(cvtColor())
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 opencv小练习

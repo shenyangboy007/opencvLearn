@@ -169,3 +169,28 @@ void QuickDemo::tracking_Bar_Dome(Mat& image) {
 	createTrackbar("Contras Bar:", "亮度&对比度调整", &contrast_value, 200, on_contrast, (void*)(&image));
 	on_lightness(50, &image);
 }
+
+void QuickDemo::key_Demo(Mat& image) {
+	Mat dst = Mat::zeros(image.size(), image.type());
+	while (true) {
+		char c = waitKey(100); //读取键盘输入
+		if (c == 27) { //ESC
+			break;
+		}
+		if (c == 49) { //1
+			std::cout << "you enter key #1" << std::endl;
+			cvtColor(image, dst, COLOR_BGR2GRAY);
+		}
+		if (c == 50) { //2
+			std::cout << "you enter key #2" << std::endl;
+			cvtColor(image, dst, COLOR_BGR2HSV);
+		}
+		if (c == 51) { //3
+			std::cout << "you enter key #3" << std::endl;
+			dst = Scalar(50, 50, 50);
+			add(image, dst, dst);
+		}
+		imshow("键盘响应", dst);
+		std::cout << c << std::endl;
+	}
+}
