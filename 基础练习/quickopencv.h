@@ -12,4 +12,7 @@ class QuickDemo
 		void operate_Demo(Mat& image);
 		void tracking_Bar_Dome(Mat& image);
 		void key_Demo(Mat& image);
+		void color_Style_Demo(Mat& image);
+		void bitwise_Demo(Mat& image);
+		void channels_Demo(Mat& image);
 };

@@ -1,4 +1,5 @@
 #include<quickopencv.h>
+#include<string.h>
 
 void QuickDemo::colorSpace_Demo(Mat& image) {
 	Mat gray,hsv;
@@ -194,3 +195,75 @@ void QuickDemo::key_Demo(Mat& image) {
 		std::cout << c << std::endl;
 	}
 }
+
+void QuickDemo::color_Style_Demo(Mat& image) {
+	int colormap[] = {  //色彩枚举
+		COLORMAP_AUTUMN ,
+		COLORMAP_BONE,
+		COLORMAP_CIVIDIS,
+		COLORMAP_DEEPGREEN,
+		COLORMAP_HOT,
+		COLORMAP_HSV,
+		COLORMAP_INFERNO,
+		COLORMAP_JET,
+		COLORMAP_MAGMA,
+		COLORMAP_OCEAN,
+		COLORMAP_PINK,
+		COLORMAP_PARULA,
+		COLORMAP_RAINBOW,
+		COLORMAP_SPRING,
+		COLORMAP_TWILIGHT,
+		COLORMAP_TURBO,
+		COLORMAP_TWILIGHT,
+		COLORMAP_VIRIDIS,
+		COLORMAP_TWILIGHT_SHIFTED,
+		COLORMAP_WINTER
+	};
+	Mat dst;
+	int index = 0;
+	while (true) {
+		char c = waitKey(100);
+		if (c == 27) {
+			break;
+		}
+		if (c == 49) {
+			std::cout << "you enter key #1" << std::endl;
+			std::string nameString = "d:/images/20211224";
+			nameString += std::to_string(index);
+			nameString += ".jpg";
+			imwrite(nameString, dst);
+		}
+		applyColorMap(image, dst, colormap[index % 19]); //彩色滤镜
+		index++;
+		imshow("色彩滤镜", dst);
+	}
+}
+
+void QuickDemo::bitwise_Demo(Mat& image) {
+	Mat m1 = Mat::zeros(Size(256, 256), CV_8UC3);
+	Mat m2 = Mat::zeros(Size(256, 256), CV_8UC3);
+	rectangle(m1, Rect(100, 100, 80, 80), Scalar(255, 255, 0), -1,LINE_8, 0);//创建矩形
+	rectangle(m2, Rect(150, 150, 80, 80), Scalar(0, 255, 255), -1,LINE_8, 0);
+	imshow("m1", m1);
+	imshow("m2", m2);
+	Mat dst;
+	bitwise_and(m1, m2, dst); //与操作
+	bitwise_or(m1, m2, dst);  //或操作
+	bitwise_not(image, dst);  //非操作
+	bitwise_xor(m1, m2, dst);  //异或
+	imshow("像素位操作", dst);
+}
+
+void QuickDemo::channels_Demo(Mat& image) {
+	std::vector<Mat> mv;
+	split(image, mv);  //图像通道剥离
+	Mat dst;
+	mv[1] = 0;
+	mv[2] = 0;
+	merge(mv, dst);
+	imshow("蓝色", dst);
+	int from_to[] = { 0,2,1,1,2,0 };
+	mixChannels(&image, 1, &dst, 1, from_to, 3);  //通道混合
+	imshow("通道混合", dst);
+}
+

@@ -20,6 +20,12 @@ QuickDemo.tracking_Bar_Dome方法：通过滑块条调节图像的对比度(addW
 
 QuickDemo.key_Demo方法：读取键盘输入项，根据不同的输入改变图像(cvtColor())
 
+QuickDemo.color_Style_Demo方法：颜色映射(applyColorMap())
+
+QuickDemo.bitwise_Demo方法：像素位运算(bitwise_xxx函数)
+
+QuickDemo.channels_Demo方法：图像色彩通道剥离和融合(split(),mixChannels())
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 opencv小练习
