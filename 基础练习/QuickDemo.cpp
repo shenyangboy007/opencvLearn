@@ -267,3 +267,146 @@ void QuickDemo::channels_Demo(Mat& image) {
 	imshow("通道混合", dst);
 }
 
+void QuickDemo::inrange_Demo(Mat& image) {
+	Mat hsv;
+	cvtColor(image, hsv, COLOR_BGR2HSV);
+	Mat mask;
+	//35,43,46根据图片中绿色HSV色彩空间最低值来确定图片中取值最小值
+	inRange(hsv, Scalar(35, 43, 46), Scalar(77, 255, 255), mask);
+
+	Mat redback = Mat::zeros(image.size(), image.type());
+	redback = Scalar(40, 40, 200);
+	bitwise_not(mask, mask);
+	imshow("mask", mask);
+	image.copyTo(redback, mask);//把redback复制到mask，通过mask融合得到我们最后的换背景图像
+	imshow("roi提取", redback);
+}
+
+void QuickDemo::pixel_Statistic_Demo(Mat& image) {
+
+	double minv, maxv;
+	Point minLoc, maxLoc;
+	std::vector<Mat>mv;
+	split(image, mv);
+	for (int i = 0; i < mv.size(); i++) {
+		minMaxLoc(mv[i], &minv, &maxv, &minLoc,&maxLoc, Mat());//求图像最大值和最小值
+		std::cout << "No.channels:" << i << "minvalue:" << minv << "maxvalue:" << maxv << std::endl;
+	}
+	Mat mean, stddev;
+	meanStdDev(image, mean, stddev);//求图像的均值和方差
+	std::cout << "mean:" << mean << std::endl;
+	std::cout << "stdev:" << stddev << std::endl;
+	imshow("统计",image);
+}
+
+void QuickDemo::drawing_Demo(Mat& image) {
+	Rect rect;
+	rect.x = 200;
+	rect.y = 200;
+	rect.width = 100;
+	rect.height = 100;
+	Mat bg = Mat::zeros(image.size(), image.type());
+	rectangle(image, rect, Scalar(0, 0, 255), -1, 8, 0);//画矩形
+	circle(bg, Point(350, 400), 15, Scalar(0, 0, 255), 2, LINE_AA, 0);//画圆
+	Mat dst;
+	RotatedRect rtt;
+	rtt.center = Point(200, 200);
+	rtt.size = Size(100, 200);
+	rtt.angle = 0.0;
+	line(bg, Point(100, 100),Point(350,400),Scalar(0, 0, 255), 8, LINE_AA, 0);//划线
+	ellipse(bg, rtt, Scalar(0, 0, 255), 2, 8);//画椭圆
+	imshow("矩形的绘制", bg);
+}
+
+void QuickDemo::randow_Drawing_Demo() {
+	Mat canvas = Mat::zeros(Size(512,512), CV_8UC3);
+	int w = canvas.cols;
+	int h = canvas.rows;
+	RNG rng(12345);
+	while (true) {
+		int c = waitKey(10);
+		if (c == 27) {
+			break;
+		}
+		int x1 = rng.uniform(0, w);
+		int y1 = rng.uniform(0, h);
+		int x2 = rng.uniform(0, w);
+		int y2 = rng.uniform(0, h);
+		int b = rng.uniform(0, 255);
+		int g = rng.uniform(0, 255);
+		int r = rng.uniform(0, 255);
+		//canvas = Scalar(0, 0, 0);
+		line(canvas, Point(x1, y1), Point(x2, y2), Scalar(b, g, r), 8, LINE_AA, 0);//绘制直线函数
+		imshow("随机绘制", canvas);
+	}
+}
+
+void QuickDemo::polyline_Drawing_Demo(Mat& image) {
+
+	Mat canvas = Mat::zeros(Size(512, 512), CV_8UC3);
+	Point p1(100, 100);
+	Point p2(350, 100);
+	Point p3(450, 280);
+	Point p4(320, 450);
+	Point p5(80, 400);
+	std::vector<Point> pts;
+	pts.push_back(p1);
+	pts.push_back(p2);
+	pts.push_back(p3);
+	pts.push_back(p4);
+	pts.push_back(p5);
+	std::vector<std::vector<Point>>contours;
+	contours.push_back(pts);
+	drawContours(canvas, contours, -1, Scalar(0, 0, 255), -1);
+	imshow("多边形绘制", canvas);
+
+}
+
+Point sp(-1, -1);
+Point ep(-1, -1);
+Mat temp;
+//鼠标回调函数
+void on_draw(int event, int x, int y, int flag, void* userdata) {
+	Mat image = *((Mat*)userdata);
+	if (event == EVENT_LBUTTONDOWN) {//鼠标左键按下事件
+		sp.x = x;
+		sp.y = y;
+		std::cout << "start point" << sp << std::endl;
+	}
+	else if (event == EVENT_LBUTTONUP) {//鼠标左键松开事件
+		ep.x = x;
+		ep.y = y;
+		int dx = ep.x - sp.x;
+		int dy = ep.y - sp.y;
+		if (dx > 0 && dy > 0) {
+			Rect box(sp.x, sp.y, dx, dy);
+			imshow("ROI区域", image(box));
+			rectangle(image, box, Scalar(0, 0, 255), 2, 8, 0);
+			sp.x = -1;
+			sp.y = -1;
+		}
+	}
+	else if (event == EVENT_MOUSEMOVE) {//鼠标移动事件
+		if (sp.x > 0 && sp.y > 0) {
+			ep.x = x;
+			ep.y = y;
+			int dx = ep.x - sp.x;
+			int dy = ep.y - sp.y;
+			if (dx > 0 && dy > 0) {
+				Rect box(sp.x, sp.y, dx, dy);
+				temp.copyTo(image);
+				rectangle(image, box, Scalar(0, 0, 255), 2, 8, 0);
+				imshow("鼠标绘制", image);
+			}
+		}
+	}
+}
+
+
+
+void QuickDemo::mouse_Drawing_Demo(Mat& image) {
+	namedWindow("鼠标绘制", WINDOW_AUTOSIZE);
+	setMouseCallback("鼠标绘制", on_draw, (void*)(&image));
+	imshow("鼠标绘制", image);
+	temp = image.clone();
+}

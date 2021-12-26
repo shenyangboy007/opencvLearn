@@ -29,13 +29,25 @@ int main()
 
 	//qd.key_Demo(src);
 
-	Mat src = imread("D:/images/1_1.jpg");
+	//Mat src = imread("D:/images/1_1.jpg");
 
 	//qd.color_Style_Demo(src);
 
 	//qd.bitwise_Demo(src);
 
-	qd.channels_Demo(src);
+	//qd.channels_Demo(src);
+
+	Mat src = imread("D:/images/1_1.jpg");
+
+	//qd.inrange_Demo(src);
+	//qd.pixel_Statistic_Demo(src);
+	//qd.drawing_Demo(src);
+
+	//qd.randow_Drawing_Demo();
+
+	//qd.polyline_Drawing_Demo(src);
+
+	qd.mouse_Drawing_Demo(src);
 
 	waitKey(0);//程序阻塞，参数表示延时时间。单位ms
 	destroyAllWindows();//销毁窗口

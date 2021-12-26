@@ -15,4 +15,10 @@ class QuickDemo
 		void color_Style_Demo(Mat& image);
 		void bitwise_Demo(Mat& image);
 		void channels_Demo(Mat& image);
+		void inrange_Demo(Mat& image);
+		void pixel_Statistic_Demo(Mat& image);
+		void drawing_Demo(Mat& image);
+		void randow_Drawing_Demo();
+		void polyline_Drawing_Demo(Mat& image);
+		void mouse_Drawing_Demo(Mat& image);
 };

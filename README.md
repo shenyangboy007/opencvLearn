@@ -26,6 +26,20 @@ QuickDemo.bitwise_Demo方法：像素位运算(bitwise_xxx函数)
 
 QuickDemo.channels_Demo方法：图像色彩通道剥离和融合(split(),mixChannels())
 
+QuickDemo::inrange_Demo方法：绿色背景分辨前景，并将前景转换背景（inRange())
+
+QuickDemo::pixel_Statistic_Demo方法：统计图像像素值信息(minMaxLoc(),meanStdDev())
+
+QuickDemo::drawing_Demo方法：绘制几何图形(rectangle(),circle(),ellipse(),line())
+
+QuickDemo::randow_Drawing_Demo方法：随机绘制直线(rng(),line())
+
+QuickDemo::polyline_Drawing_Demo方法：绘制多边形(drawContours())
+
+QuickDemo::mouse_Drawing_Demo方法：模仿画图中拖拽鼠标绘制矩形功能(setMouseCallback())
+
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 opencv小练习
