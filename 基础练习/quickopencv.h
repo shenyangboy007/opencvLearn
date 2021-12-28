@@ -21,4 +21,17 @@ class QuickDemo
 		void randow_Drawing_Demo();
 		void polyline_Drawing_Demo(Mat& image);
 		void mouse_Drawing_Demo(Mat& image);
+		int video_Test_Demo();
+		void norm_Demo(Mat& image);
+		void resize_Demo(Mat& image);
+		void flip_Demo(Mat& image);
+		void rotate_Demo(Mat& image);
+		void video_Demo();
+		void video_Save_Demo();
+		void histogram_Demo(Mat& image);
+		void histogram_2d_Demo(Mat& image);
+		void histogram_Eq_Demo(Mat& image);
+		void blur_Demo(Mat& image);
+		void gaussian_Blur_Demo(Mat& image);
+		void bifilter_Demo(Mat& image);
 };

@@ -38,7 +38,27 @@ QuickDemo::polyline_Drawing_Demo方法：绘制多边形(drawContours())
 
 QuickDemo::mouse_Drawing_Demo方法：模仿画图中拖拽鼠标绘制矩形功能(setMouseCallback())
 
+QuickDemo::norm_demo方法：归一化(normalize())
 
+ QuickDemo::resize_demo方法：放缩图像(resize())
+
+QuickDemo::flip_demo方法：图像翻转(flip())
+
+QuickDemo::rotate_demo方法：图像旋转(getRotationMatrix2D(),warpAffine())
+
+QuickDemo::video_demo方法：视频处理(VideoCapture)
+
+QuickDemo::histogram_demo方法：图像直方图(calcHist())
+
+QuickDemo::histogram_2d_demo方法：图像二维直方图
+
+QuickDemo::histogram_eq_demo方法：直方图均衡化(equalizeHist())
+
+QuickDemo::blur_demo方法：图像模糊(blur())
+
+QuickDemo::gaussian_blur_demo方法：高斯模糊(GaussianBlur())
+
+QuickDemo::bifilter_demo方法：双边模糊(bilateralFilter)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 

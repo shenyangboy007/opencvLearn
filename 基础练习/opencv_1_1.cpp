@@ -37,7 +37,8 @@ int main()
 
 	//qd.channels_Demo(src);
 
-	Mat src = imread("D:/images/1_1.jpg");
+	Mat src = imread("D:/images/gaoyy.png");
+	imshow("输入窗口", src);
 
 	//qd.inrange_Demo(src);
 	//qd.pixel_Statistic_Demo(src);
@@ -47,7 +48,31 @@ int main()
 
 	//qd.polyline_Drawing_Demo(src);
 
-	qd.mouse_Drawing_Demo(src);
+	//qd.mouse_Drawing_Demo(src);
+   
+	//qd.norm_Demo(src);
+
+	//qd.resize_Demo(src);
+
+	//qd.flip_Demo(src);
+
+	//qd.rotate_Demo(src);
+
+	//qd.video_Demo();
+
+	//qd.video_Save_Demo();
+	
+	//qd.histogram_Demo(src);
+
+	//qd.histogram_Eq_Demo(src);
+
+	//qd.histogram_2d_Demo(src);
+
+	//qd.blur_Demo(src);
+	
+	//qd.gaussian_Blur_Demo(src);
+
+	qd.bifilter_Demo(src);
 
 	waitKey(0);//程序阻塞，参数表示延时时间。单位ms
 	destroyAllWindows();//销毁窗口
