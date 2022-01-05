@@ -66,6 +66,8 @@ QuickDemo::bifilter_demo方法：双边模糊(bilateralFilter)
 
 filter2D_Demo：掩膜操作
 
+Mat:Mat常用初始化方法
+
 ------------------------------------------------------------------------
 
 opencv小练习
