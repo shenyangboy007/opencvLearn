@@ -68,7 +68,9 @@ filter2D_Demo：掩膜操作
 
 Mat:Mat常用初始化方法
 
-bitwise_not_Demo.cpp：图像取反操作
+bitwise_not_Demo：图像取反操作
+
+addWeighted_Demo: 图像融合操作
 
 ------------------------------------------------------------------------
 
