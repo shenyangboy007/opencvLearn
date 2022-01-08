@@ -72,6 +72,12 @@ bitwise_not_Demo：图像取反操作
 
 addWeighted_Demo: 图像融合操作
 
+LinearStrength：图像亮度线性增强
+
+blur:均值模糊，高斯模糊，中值模糊，双边模糊
+
+morphology_Demo：腐蚀与膨胀
+
 ------------------------------------------------------------------------
 
 opencv小练习
