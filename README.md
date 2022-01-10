@@ -84,6 +84,20 @@ sampling：上采样，降采样，高斯不同
 
 threshold：自定义阈值处理
 
+borderFill：边框填充处理
+
+linearFiltering：线性滤波(Sobel算子，拉普拉斯算子)
+
+Sobel_Demo：sobel边界提取
+
+laplace_Demo: 拉普拉斯边界提取
+
+canny_Demo：canny边界提取
+
+houghLines.cpp：霍夫变换提取直线
+
+houghCircle：霍夫变换提取圆形结构
+
 ------------------------------------------------------------------------
 
 opencv小练习
