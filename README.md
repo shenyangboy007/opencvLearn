@@ -98,9 +98,11 @@ houghLines.cpp：霍夫变换提取直线
 
 houghCircle：霍夫变换提取圆形结构
 
+pixMap_Demo：图像像素映射
+
 Histogram_Demo：直方图均质化和一维直方图
 
-pixMap_Demo：图像像素映射
+CalcHist_Compare_Demo：直方图计算与比较
 
 ------------------------------------------------------------------------
 
