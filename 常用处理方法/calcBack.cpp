@@ -12,7 +12,7 @@ int main() {
 
 	test01 = imread("d:/images/lena.png");
 
-	if (!test01.data && !test02.data && !test03.data) {
+	if (!test01.data) {
 		cout << "Í¼Ïñ¼ÓÔØÊ§°Ü" << endl;
 		return -1;
 	}
