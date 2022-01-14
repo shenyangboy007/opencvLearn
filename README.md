@@ -108,7 +108,9 @@ calcBack：直方图反向投影
 
 matchTemplate：模版匹配方法
 
-convexHull：凸包操作
+findContours：轮廓查找
+
+convexHull：凸包处理
 
 ------------------------------------------------------------------------
 
